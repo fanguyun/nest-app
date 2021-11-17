@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface';
 import { AppModule } from './app/app.module';
-import Logger from 'node-log-info';
 // import { RolesGuard } from './app/guard/roles/roles.guard';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AuthGuard } from './guard/auth/auth.guard';
@@ -9,13 +8,7 @@ import { LoggingInterceptor } from './interceptor/logging/logging.interceptor';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(
-    AppModule,
-    null,
-    {
-      logger: new Logger({ name: 'nest-app' }) as any,
-    },
-  );
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useGlobalGuards(new AuthGuard()); // 全局守卫
   app.useGlobalInterceptors(new LoggingInterceptor()); // 全局拦截器
   app.useGlobalInterceptors(new TransformInterceptor()); // 全局拦截器

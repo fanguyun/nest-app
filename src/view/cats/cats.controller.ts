@@ -12,13 +12,11 @@ import {
   Redirect,
   Req,
   UseGuards,
-  UseInterceptors,
   UsePipes,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { Roles } from 'src/decorator/roles.decorator';
 import { RolesGuard } from 'src/guard/roles/roles.guard';
-import { LoggingInterceptor } from 'src/interceptor/logging/logging.interceptor';
 import { Cat } from 'src/interface/cat.interface';
 import { CreateCatSchema } from 'src/joi-schema/cat-schema';
 import { ParseIntPipe } from 'src/pipe/parse-init/parse-int.pipe';
