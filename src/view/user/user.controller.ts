@@ -9,6 +9,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDTO } from './user.dto';
 import { User } from './user.interface';
 import { UserService } from './user.service';
@@ -19,6 +20,7 @@ interface UserResponse<T = unknown> {
   message: string;
 }
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

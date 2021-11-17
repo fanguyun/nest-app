@@ -14,6 +14,7 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { Roles } from 'src/decorator/roles.decorator';
 import { RolesGuard } from 'src/guard/roles/roles.guard';
@@ -24,6 +25,7 @@ import { ValidationPipe } from 'src/pipe/validate/validate.pipe';
 import { CreateCatDto } from '../../dto/cat.dto';
 import { CatsService } from './cats.service';
 
+@ApiTags('cats')
 @Controller('cats')
 @UseGuards(RolesGuard) // 绑定守卫
 // @UseInterceptors(LoggingInterceptor)
