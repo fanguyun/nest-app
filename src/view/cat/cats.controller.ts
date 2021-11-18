@@ -18,11 +18,11 @@ import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { Roles } from 'src/decorator/roles.decorator';
 import { RolesGuard } from 'src/guard/roles/roles.guard';
-import { Cat } from 'src/interface/cat.interface';
-import { CreateCatSchema } from 'src/joi-schema/cat-schema';
+import { Cat } from './cat.interface';
+import { CreateCatSchema } from './cat.schema';
 import { ParseIntPipe } from 'src/pipe/parse-init/parse-int.pipe';
 import { ValidationPipe } from 'src/pipe/validate/validate.pipe';
-import { CreateCatDto } from '../../dto/cat.dto';
+import { CreateCatDto } from './cat.dto';
 import { CatsService } from './cats.service';
 
 @ApiTags('cats')

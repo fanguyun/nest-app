@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from '../middleware/logger/logger.middleware';
 import { AdminController } from '../view/admin/admin.controller';
-import { CatsModule } from '../view/cats/cats.module';
+import { CatsModule } from '../view/cat/cats.module';
 import { UserModule } from '../view/user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
