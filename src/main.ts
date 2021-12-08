@@ -1,8 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface';
-import { AppModule } from './app/app.module';
 // import { RolesGuard } from './app/guard/roles/roles.guard';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import {
+  DocumentBuilder,
+  SwaggerCustomOptions,
+  SwaggerModule,
+} from '@nestjs/swagger';
+import { join } from 'path';
+import { AppModule } from './app/app.module';
+import { customStyleStr } from './config';
 import { AuthGuard } from './guard/auth/auth.guard';
 import { LoggingInterceptor } from './interceptor/logging/logging.interceptor';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
@@ -18,7 +24,12 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-doc', app, document);
+  const options: SwaggerCustomOptions = {
+    explorer: true,
+    customCss: customStyleStr,
+  };
+  SwaggerModule.setup('api-doc', app, document, options);
+  app.useStaticAssets(join(__dirname, '../public'));
   const port = process.env.PORT || 3000;
   // app.use(); 全局中间件
   await app.listen(port, () => {
