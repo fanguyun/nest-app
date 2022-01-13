@@ -1,9 +1,9 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerMiddleware } from '../middleware/logger/logger.middleware';
-import { AdminController } from '../view/admin/admin.controller';
-import { CatsModule } from '../view/cat/cats.module';
-import { UserModule } from '../view/user/user.module';
+import { AdminController } from '../module/admin/admin.controller';
+import { CatsModule } from '../module/cat/cats.module';
+import { UserModule } from '../module/user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 

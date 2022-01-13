@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDTO } from './user.dto';
@@ -30,6 +30,11 @@ export class UserService {
 
   // 删除用户
   async deleteUser(id: string): Promise<void> {
-    await this.userModel.findByIdAndRemove(id);
+    const res = await this.userModel.findByIdAndRemove(id);
+    if (!res) {
+      throw new HttpException('无效的用户ID', 401);
+    } else {
+      return res._id;
+    }
   }
 }
