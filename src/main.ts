@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces/nest-express-application.interface';
 // import { RolesGuard } from './app/guard/roles/roles.guard';
@@ -23,6 +24,8 @@ async function bootstrap() {
   app.setGlobalPrefix('nestApi');
   // 注册全局错误的过滤器
   app.useGlobalFilters(new HttpExceptionFilter());
+  // 注册全局验证管道
+  app.useGlobalPipes(new ValidationPipe());
 
   // swagger配置注入
   const config = new DocumentBuilder()
